@@ -91,5 +91,3 @@ select * from github;
 insert into passworddetails values('super@user.com','12345678');
 select * from passworddetails;
 */
-
-
