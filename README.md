@@ -1,2 +1,3 @@
 # PROlogue
-    An Event Application Screening Automation WEBAPP.
+An Event Application Screening Automation WEBAPP.
+
