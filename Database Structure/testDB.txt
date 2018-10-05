@@ -17,7 +17,7 @@ CREATE TABLE candidatedetails (
 	codechef varchar(60),
 	hackerrank varchar(60),
 	skills varchar(500),
-	contact_no integer,
+	contact_no bigint,
 	graduation_year integer,
 	fy_ypi float,
 	sy_ypi float,
