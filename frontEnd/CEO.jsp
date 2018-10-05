@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	    pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
+
 <!DOCTYPE html>
 <html>
 <style>
@@ -76,7 +77,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">All Positions:</a>
     <a href="Intern.jsp">AI Intern</a>
-    <a href="SoftwareEngineer.jsp">Software Engineer</a>
+    <a href="SofwareEngineer.jsp">Software Engineer</a>
     <a href="CEO.jsp">CEO</a>
     <a href="Contact.jsp">Contact Us for Help</a>
   </div>
@@ -107,8 +108,12 @@
 </nav>
 	<div class="card text-center card-body" style="margin:5% 18% auto 18%">
 	
-			<p class="lead">Welcome! Click on the Menu button to check out the opened positions!</p>
-		
+			<table>
+                <tr>
+                    <td>The data goes in the table here lol</td>
+                </tr>
+            </table>
+
     </div>
       <!-- Use any element to open the sidenav -->
 
