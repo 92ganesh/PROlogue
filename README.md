@@ -1,3 +1,3 @@
 # PROlogue
+An Event Application Screening Automation WEBAPP.
 
-This is Ganesh's branch
