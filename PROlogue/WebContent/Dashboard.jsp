@@ -76,7 +76,7 @@
     <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
     <a href="#">All Positions:</a>
     <a href="Intern.jsp">AI Intern</a>
-    <a href="SoftwareEngineer.jsp">Software Engineer</a>
+    <a href="SoftwareEngineer.jsp">Softwares Engineer</a>
     <a href="CEO.jsp">CEO</a>
     <a href="Contact.jsp">Contact Us for Help</a>
   </div>

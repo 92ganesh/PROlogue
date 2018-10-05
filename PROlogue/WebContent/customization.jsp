@@ -41,18 +41,53 @@
 			</div>
 			<p class="text-center lead" style="font-size:28px">Customize</p>
 			<small><b>Note: </b>10 is the best performance</small><br/><br/>
-			requirement: <input type="text" id="requirementName">
+			requirement: <input type="text" id="requirementName"> <br><br>
 			<p id="requirementList">
 				<!-- will be inserted by JS -->
 			</p>
-			<input type="button" class=" btn btn-outline-success" style="margin-left:45%" value="add requirement" onclick="addReg()"> <br><br>
+			<div class="form-group row">
+			    <label class="col-sm-3"for="exampleFormControlSelect1">GitHub activity</label>
+			    <select class="form-control col-sm-2" id="GitHubActivity">
+			      <option>0</option>
+			      <option>1</option>
+			      <option>2</option>
+			      <option>3</option>
+			      <option>4</option>
+			      <option>5</option>
+			      <option>6</option>
+			      <option>7</option>
+			      <option>8</option>
+			      <option>9</option>
+			      <option>10</option>
+		   		</select>
+  			</div>
+			<div class="form-group row">
+			    <label class="col-sm-3"for="exampleFormControlSelect1">Competitive Programming</label>
+			    <select class="form-control col-sm-2" id="CPActivity">
+			      <option>0</option>
+			      <option>1</option>
+			      <option>2</option>
+			      <option>3</option>
+			      <option>4</option>
+			      <option>5</option>
+			      <option>6</option>
+			      <option>7</option>
+			      <option>8</option>
+			      <option>9</option>
+			      <option>10</option>
+		   		</select>
+  			</div>
+			<input type="button" class=" btn btn-outline-success" style="margin-left:45%" value="add requirement" onclick="addReq()"> <br><br>
 			<input type="button" class=" btn btn-outline-success" style="margin-left:45%" value="submit" onclick="sendDetails()">
 		</form>
 </div>
 	<script>
 		function sendDetails(){
+				var positionName = document.getElementById("position-input").value;
+				var GitHubActivity = document.getElementById("GitHubActivity").value;
+				var CPActivity = document.getElementById("CPActivity").value;
 				var requirements = document.getElementsByName("requirements");
-				var keyValue = "keyValue=";
+				var keyValue = "positionName="+positionName+"&GitHubActivity="+GitHubActivity+"&CPActivity="+CPActivity+"&keyValue=";
 				for (i = 0; i < requirements.length; i++) {
 					var key = requirements[i].options[requirements[i].selectedIndex].value;
 					var value = requirements[i].options[requirements[i].selectedIndex].text;
@@ -61,7 +96,7 @@
 				 		keyValue+=","
 				 	}
 				}
-				
+
 				var xhttp = new XMLHttpRequest();
 			    xhttp.onreadystatechange = function() {
 			    	// for future use
@@ -69,10 +104,10 @@
 			    xhttp.open("POST", "customization", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 				console.log(keyValue);
-				xhttp.send(keyValue); 
+				xhttp.send(keyValue);
 		}
-		
-		function addReg(){
+
+		function addReq(){
 				var addSelect = '<div class="form-group row"><label class="col-sm-3"for="exampleFormControlSelect1">';
 				addSelect+=document.getElementById("requirementName").value+'</label>'+'<select name="requirements" class="form-control col-sm-2">';
 				for(var i=1;i<=10;i++){
