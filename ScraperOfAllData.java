@@ -501,7 +501,7 @@ public class ScraperOfAllData {
 	
 		*/	
 	//codeForces:
-			System.out.println("The codeforces Rating is "+codeForcesRanking("tourist"));
+			System.out.println("The codeforces Rating is "+codeForcesRanking("-1"));
 		}
 
 

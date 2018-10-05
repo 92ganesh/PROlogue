@@ -28,6 +28,23 @@ CREATE TABLE candidatedetails (
 	invite_for_next_round varchar(60) CHECK(invite_for_next_round='YES' OR invite_for_next_round='NO') DEFAULT 'NO'
 );
 
+
+
+create table recruiterRequirements(
+	positionId integer PRIMARY KEY,
+	positionName varchar(60) ,
+	gitActivity integer,
+	competitive integer,	
+	positionRequirements varchar(200)
+);
+
+
+
+create table codeforces(
+	reg_no integer PRIMARY KEY,
+	contestRank integer
+);
+
 create table codechef(
 	reg_no integer PRIMARY KEY,
 	rating int,
@@ -58,8 +75,9 @@ create table github(
 alter table github add constraint connec1 foreign key(reg_no) references candidateDetails(reg_no);
 alter table hackerrank add constraint connec2 foreign key(reg_no) references candidateDetails(reg_no);
 alter table codechef add constraint connec3 foreign key(reg_no) references candidateDetails(reg_no);
+alter table codeforces add constraint connec4 foreign key(reg_no) references candidateDetails(reg_no);
 
-
+/*
 
 /*optional fake data for testing purposes only*/
 
@@ -89,3 +107,4 @@ select * from github;
 
 insert into passworddetails values('super@user.com','12345678');
 select * from passworddetails;
+*/
