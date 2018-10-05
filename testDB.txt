@@ -24,6 +24,7 @@ CREATE TABLE candidatedetails (
 	ty_ypi float,
 	ly_ypi float,
 	codeforces varchar(60),
+	cumulative_score float DEFAULT 0,
 	invite_for_next_round varchar(60) CHECK(invite_for_next_round='YES' OR invite_for_next_round='NO') DEFAULT 'NO'
 );
 
@@ -61,7 +62,7 @@ alter table codechef add constraint connec3 foreign key(reg_no) references candi
 
 
 /*optional fake data for testing purposes only*/
-
+/*
 insert into candidatedetails values(1,'Ganesh','tp92ganeshpatra@gmail.com','ganesh-patra','92ganesh','ganesh92','92ganesh','JAVA, PERL',987654321,2020,8.97,7.56,6.5,7.2,'92ganesh');
 insert into candidatedetails values(2,'Yash','yashnaik2406@gmail.com','yashnaik2909','YashAndonia','andonia2','yashnaik2406','CPP, PYTHON',342436446,2021,7.97,7.86,6.5,7.2,'andonia2');
 insert into candidatedetails values(3,'Shubham','shubhammuniyal@gmail.com','shubham-muniyal-573285162','shubham12345678901','shubham_hi5','shubhammuniyal','C, PHP',9645125,2021,7.97,7.86,6.5,7.2,'shubham123');
@@ -88,3 +89,4 @@ select * from github;
 
 insert into passworddetails values('super@user.com','12345678');
 select * from passworddetails;
+*/
