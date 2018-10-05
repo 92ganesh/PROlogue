@@ -116,14 +116,7 @@
 				addSelect+='</select></div>';
 				document.getElementById("requirementList").innerHTML = document.getElementById("requirementList").innerHTML+addSelect;
 		}
-		/*var sending = "inviteType=selectForNextRound&checkList=";
-		var checkList = document.getElementsByName("invite_list");
-		for (i = 0; i < checkList.length; i++) {
-			if(checkList[i].checked == true) {
-				sending+=chec oninvalid=""kList[i].value+";";
-			}
-		}
-		*/
+		
 	</script>
 </body>
 </html>
