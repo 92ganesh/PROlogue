@@ -11,7 +11,7 @@ CREATE TABLE passworddetails(
 CREATE TABLE candidatedetails (
 	reg_no integer PRIMARY KEY,
 	cname varchar(60) NOT NULL,
-	cemail varchar(60) NOT NULL UNIQUE,
+	cemail varchar(60) NOT NULL,
 	linkedin varchar(60),
 	github varchar(60),
 	codechef varchar(60),
