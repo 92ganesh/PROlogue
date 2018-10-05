@@ -24,6 +24,7 @@ CREATE TABLE candidatedetails (
 	ty_ypi float,
 	ly_ypi float,
 	codeforces varchar(60),
+	cumulative_score integer DEFAULT 0,
 	invite_for_next_round varchar(60) CHECK(invite_for_next_round='YES' OR invite_for_next_round='NO') DEFAULT 'NO'
 );
 
