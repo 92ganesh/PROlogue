@@ -1,0 +1,38 @@
+#nav-control {
+        font-family: 'Bree Serif', serif;
+        text-decoration-color: #fff;
+}
+
+.company-name {
+    font-family: 'Bree Serif', serif;
+}
+
+#logo {
+    font-family: 'Pacifico', cursive;
+}
+
+.container-fluid {
+    margin: auto;
+    padding: inherit;
+    font-family: 'Raleway', sans-serif;
+}
+
+.jumbotron {
+    text-align: center;
+    background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("stock.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: inline-block;
+    min-height: 500px;
+    min-width: 1321px;
+}
+input{
+    min-width: 300px;
+    max-width: 300px
+}
+
+button {
+    min-width: 100px;
+    max-width: 100px;
+    align-self: center;
+}
