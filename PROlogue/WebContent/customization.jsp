@@ -83,9 +83,10 @@
 </div>
 	<script>
 		function update(){
+			var once = 0;
 			var xhttp = new XMLHttpRequest();
 		    xhttp.onreadystatechange = function() {
-		    	// for future use
+		    	
 		    };
 		    xhttp.open("POST", "update", true);
 			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -106,10 +107,11 @@
 				 		keyValue+=","
 				 	}
 				}
-
+				var once = 0;
+				
 				var xhttp = new XMLHttpRequest();
 			    xhttp.onreadystatechange = function() {
-			    	// for future use
+			    	
 			    };
 			    xhttp.open("POST", "customization", true);
 				xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

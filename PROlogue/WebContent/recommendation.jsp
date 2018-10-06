@@ -104,7 +104,7 @@
 </nav>
 	<div class="card text-center card-body" style="margin:5% 18% auto 18%">
 	<div class="table-responsive">
-		<table id="printCandidateDetails">
+		<table class="table table-striped table-bordered" id="printCandidateDetails">
 			 	<!-- candidateDetails will be entered here by JavaScript -->
 		</table></div>
 		<input type="button" value="select" onclick="selectForNextRound()">
@@ -181,6 +181,7 @@
 	    	  var content = "<tr><th>Skills</th><th>Priority</th></tr>";
 		      content += this.getResponseHeader("PositionDetails");
 			  document.getElementById("PositionDetail").innerHTML = content;
+			  console.log(content);
 	      }
 	  	};
 	    xhttp.open("POST", "printPositionDetails", true);
