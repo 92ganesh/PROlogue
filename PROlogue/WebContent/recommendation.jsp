@@ -70,15 +70,12 @@
   </style>
 
 </head>
-<body style="background-color: #ddd" onload="printCandidateDetails()">
+<body style="background-color: #ddd" onload="addPositions()">
 
-  <div id="mySidenav" class="sidenav" id="AllPositions">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#">All Positions:</a>
-    <a href="Intern.jsp">AI Intern</a>
-    <a href="SoftwareEngineer.jsp">Softwares Engineer</a>
-    <a href="CEO.jsp">CEO</a>
-    <a href="Contact.jsp">Contact Us for Help</a>
+  <div id="mySidenav" class="sidenav" >
+    <p id="AllPositions">
+	   
+    </p>
   </div>
   <span onclick="openNav()"><i class="material-icons" style="font-size:64px">
       menu
@@ -105,12 +102,13 @@
     </form>
   </div>
 </nav>
-	<input type='button' value='add' onclick="">
 	<div class="card text-center card-body" style="margin:5% 18% auto 18%">
 	
 		<table id="printCandidateDetails">
 			 	<!-- candidateDetails will be entered here by JavaScript -->
 		</table>
+		<input type="button" value="select" onclick="selectForNextRound()">
+		<input type="button" value="invite" onclick="sendInvitation()">
     </div>
       <!-- Use any element to open the sidenav -->
 
@@ -120,20 +118,70 @@
 
 </body>
 
-<script>AllPositions
+<script>		
+	function selectForNextRound(){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if(this.readystate == 4 && this.status == 200) {
+				// what to display after sending
+			}
+		}
+		xhttp.open("POST","Invitation",true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+		var sending = "inviteType=selectForNextRound&checkList=";
+		var checkList = document.getElementsByName("invite_list");
+		for (i = 0; i < checkList.length; i++) {
+			if(checkList[i].checked == true) {
+				sending+=checkList[i].value+";";
+			}
+		}
+		xhttp.send(sending);
+	}
 	
+	function sendInvitation(){
+		var xhttp = new XMLHttpRequest();
+		xhttp.onreadystatechange = function() {
+			if(this.readystate == 4 && this.status == 200) {
+				// what to display after sending
+			}
+		}
+		xhttp.open("POST","Invitation",true);
+		xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+		
+		var sending = "inviteType=sendInvitation";
+		xhttp.send(sending);
+	}
+
+
 	function addPositions(){
-		document.getElementById("AllPositions").innerHTML = document.getElementById("PositionDetailsd").innerHTML + "<input type='button' value='kuch'>";
+		//document.getElementById("AllPositions").innerHTML = document.getElementById("AllPositions").innerHTML + "<a href='javascript:;' onClick='return printCandidateDetails();'>link</a>" // "<input type='button' value='kuch'>";
+		var xhttp = new XMLHttpRequest();
+	    xhttp.onreadystatechange = function() {
+	      if (this.readyState == 4 && this.status == 200) {
+	    	  var content = this.getResponseHeader("addPositions");
+	    	  document.getElementById("AllPositions").innerHTML = document.getElementById("AllPositions").innerHTML +content;
+			  console.log(content);
+			  printCandidateDetails(1);
+	      }
+	  	};
+	    xhttp.open("POST", "addPositions", true);
+	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	    
+	    var sending = "";
+	    
+		xhttp.send(sending);
+		
 	}
 	
 	
-	function printPositionDetails(){
+	function printPositionDetails(posId){
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.onreadystatechange = function() {
 	      if (this.readyState == 4 && this.status == 200) {
 	    	  var content = "<tr><th>Skills</th><th>Priority</th></tr>";
 		      content += this.getResponseHeader("PositionDetails");
-			  document.getElementById("PositionDetailsd").innerHTML = content;
+			  document.getElementById("PositionDetail").innerHTML = content;
 			  console.log(content);
 	      }
 	  	};
@@ -145,21 +193,20 @@
 		xhttp.send(sending);
 	}
 
-	function printCandidateDetails(){
+	function printCandidateDetails(pos){
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.onreadystatechange = function() {
 	      if (this.readyState == 4 && this.status == 200) {
 	    	  var content = "<tr><th>Reg No.</th><th>Name</th><th>Invite</th></tr>";
 		      content += this.getResponseHeader("printCandidateDetails");
 			  document.getElementById("printCandidateDetails").innerHTML = content;
-			  console.log(content);
 	      }
 	  	};
 	    xhttp.open("POST", "PrintAllCandidateDetails", true);
 	    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	    
-	    var sending = "";
-	
+	    console.log(pos);
+	    var sending = "pos="+pos;
 		xhttp.send(sending);
 	}
 

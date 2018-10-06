@@ -19,15 +19,15 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="Dashboard.jsp">Dashboard <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="customization.jsp">Customization <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Settings.jsp">Settings</a>
+        <a class="nav-link" href="recommendation.jsp">Dashboard</a>
       </li>
     </ul>
     <ul class="navbar-nav ml-auto ">
     	<li class="nav-item">
-     	 <button class="btn btn-outline-success " type="submit">Login</button>
+     	 <button class="btn btn-outline-success " type="submit" onclick="update()">Update Database</button>
     	</li>
 	</ul>
   </div>
@@ -82,6 +82,16 @@
 		</form>
 </div>
 	<script>
+		function update(){
+			var xhttp = new XMLHttpRequest();
+		    xhttp.onreadystatechange = function() {
+		    	// for future use
+		    };
+		    xhttp.open("POST", "update", true);
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+			xhttp.send("");
+		}
+		
 		function sendDetails(){
 				var positionName = document.getElementById("position-input").value;
 				var GitHubActivity = document.getElementById("GitHubActivity").value;

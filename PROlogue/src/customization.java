@@ -26,6 +26,8 @@ public class customization extends HttpServlet {
 		System.out.println(GitHubActivity);
 		String CPActivity = request.getParameter("CPActivity");
 		System.out.println(CPActivity);
+		
+		databaseConnection.insertDataRequirements(positionName,Integer.parseInt(GitHubActivity),Integer.parseInt(CPActivity),keyValue);
 	}
 
 }
