@@ -31,6 +31,33 @@ public class databaseConnection {
 				System.out.println("databaseConnection at line "+lineNum()+":"+e.getMessage());
 			}
 		}
+	   
+	   public static String[] getRecommendedCandidates(String regListCombined){
+		    String[] regListSplitted = regListCombined.split(",");
+		    String regList="", namesList="";
+			   
+		    for(int i=0; i<regListSplitted.length; i++) {
+		    	connect();
+				try {
+				   int reg_no = Integer.parseInt(regListSplitted[i]);
+				   PreparedStatement pst=null;
+				   pst=conn.prepareStatement("SELECT cname FROM candidatedetails WHERE reg_no = "+reg_no+" ;");
+				 
+				   ResultSet r=(ResultSet)pst.executeQuery();
+				   while(r.next()){ 
+					   regList += reg_no +",";
+					   namesList = namesList + r.getString("cname")+",";
+				   }
+				   pst.close();
+				}catch (SQLException e) {
+				   System.out.println("databaseConnection at line "+lineNum()+":"+e.getMessage());
+				}
+				disconnect();
+		    }
+		    String regAndNames[] = {regList,namesList};
+		    return regAndNames;
+		}
+	   
 	   /*
 	   public static void insertDataCandidate(int regNo, String cName,String cEmail, String linkedIn,String gitHub,String codeChef,String hackerRank,String skills){
 		   connect();
