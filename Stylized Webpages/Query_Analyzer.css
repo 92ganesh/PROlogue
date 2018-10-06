@@ -17,6 +17,12 @@
     font-family: 'Raleway', sans-serif;
 }
 
+.container {
+    margin-top: auto;
+    padding: inherit;
+    font-family: 'Raleway', sans-serif;
+}
+
 .jumbotron {
     text-align: center;
     background: linear-gradient(rgba(255,255,255,.5), rgba(255,255,255,.5)), url("stock.jpeg");
