@@ -19,7 +19,8 @@ public class PrintAllCandidateDetails extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String htmlTable  = "";
-		String str = "1,3,4";
+		int pos = Integer.parseInt(request.getParameter("pos"));
+		String str = databaseConnection.eligibleCandidates(pos);
 		//htmlTable+= databaseConnection.getRecommendedCandidates(str);
 		String[] s = databaseConnection.getRecommendedCandidates(str);
 		String[] regList=s[0].split(","), namesList=s[1].split(",");
@@ -28,7 +29,7 @@ public class PrintAllCandidateDetails extends HttpServlet {
 			htmlTable+="<tr><td>"+regList[i]+"</td><td>"+namesList[i]+"</td>";
 			htmlTable+= "<td><input type='checkbox' name='invite_list' value='"+regList[i]+"'></td></tr>";
 		}
-		System.out.println(htmlTable);
+		System.out.println("----POS ID "+pos);
 		response.addHeader("printCandidateDetails",htmlTable);
 	}
 }
