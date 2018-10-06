@@ -91,10 +91,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" href="#">Dashboard <span class="sr-only">(current)</span></a>
+         <a class="nav-link" href="customization.jsp">Customization </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Settings</a>
+         <a class="nav-link" href="recommendation.jsp"><b>Dashboard<b/> <span class="sr-only">(current)</span></a>
       </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
@@ -103,10 +103,10 @@
   </div>
 </nav>
 	<div class="card text-center card-body" style="margin:5% 18% auto 18%">
-	
+	<div class="table-responsive">
 		<table id="printCandidateDetails">
 			 	<!-- candidateDetails will be entered here by JavaScript -->
-		</table>
+		</table></div>
 		<input type="button" value="select" onclick="selectForNextRound()">
 		<input type="button" value="invite" onclick="sendInvitation()">
     </div>
@@ -161,7 +161,6 @@
 	      if (this.readyState == 4 && this.status == 200) {
 	    	  var content = this.getResponseHeader("addPositions");
 	    	  document.getElementById("AllPositions").innerHTML = document.getElementById("AllPositions").innerHTML +content;
-			  console.log(content);
 			  printCandidateDetails(1);
 	      }
 	  	};
@@ -182,7 +181,6 @@
 	    	  var content = "<tr><th>Skills</th><th>Priority</th></tr>";
 		      content += this.getResponseHeader("PositionDetails");
 			  document.getElementById("PositionDetail").innerHTML = content;
-			  console.log(content);
 	      }
 	  	};
 	    xhttp.open("POST", "printPositionDetails", true);
@@ -197,9 +195,10 @@
 	    var xhttp = new XMLHttpRequest();
 	    xhttp.onreadystatechange = function() {
 	      if (this.readyState == 4 && this.status == 200) {
-	    	  var content = "<tr><th>Reg No.</th><th>Name</th><th>Invite</th></tr>";
+	    	  var content = "<tr><th>Reg No.</th><th>Name</th><th>Score</th><th>Invite</th></tr>";
 		      content += this.getResponseHeader("printCandidateDetails");
 			  document.getElementById("printCandidateDetails").innerHTML = content;
+			  console.log(content);
 	      }
 	  	};
 	    xhttp.open("POST", "PrintAllCandidateDetails", true);
