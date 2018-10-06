@@ -46,28 +46,24 @@ public class databaseConnection {
 			   PreparedStatement pst=null;
 			   
 			   if(tableName=="recruiterrequirements") {
-				   System.out.println("SELECT "+what_data+" FROM "+tableName+" WHERE positionid = ? ;");
 				   pst=conn.prepareStatement("SELECT "+what_data+" FROM "+tableName+" WHERE positionid = ? ;");
 			   }
 			   else {
 				   pst=conn.prepareStatement("SELECT "+what_data+" FROM "+tableName+" WHERE reg_no = ? ;");
-
-				   System.out.println("SELECT "+what_data+" FROM "+tableName+" WHERE positionid = ? ;");
 			   }
-			   System.out.println("---0");
 			   pst.setInt(1, regNo_value);
-			   System.out.println("---1");
 			   String return_value=new String(); 
 			   ResultSet r=(ResultSet)pst.executeQuery();
-			   System.out.println("---2");
 			   while(r.next()){ 
 				   return_value =  r.getString(what_data);
 			   }
 			   pst.close();
-			   	return return_value;
+			   disconnect();
+			   return return_value;
 			
-			   }catch (SQLException e) {
+			}catch (SQLException e) {
 			   System.out.println("databaseConnection at line "+lineNum()+":"+e.getMessage());
+			   disconnect();
 			   return "";
 			}
 		}
@@ -168,30 +164,37 @@ public class databaseConnection {
 	   
 	   //create score inserter
 	   public static void scoreInserter(int positionId) {
+		   System.out.println("------99 "+positionId);
 		   connect();
 		   PreparedStatement pst2=null;
+		   float score=0;
 		   try {		
-			   float score=0;
+			   
 			   PreparedStatement pst3=null;
 			   pst3=conn.prepareStatement("SELECT * FROM candidatedetails");
-			 
 			   ResultSet r=(ResultSet)pst3.executeQuery();
+			   disconnect();
 			   while(r.next()){ 
-				   
-			   		score=scoreCalculator.ultimateAlgorithm(r.getInt("reg_no"), selectCertainData("recruiterrequirements", positionId, "positionrequirements"), r.getString("skills"), Integer.parseInt(selectCertainData("recruiterrequirements", positionId, "competitive")), Integer.parseInt(selectCertainData("recruiterrequirements", positionId, "gitActivity")));
-			   		pst2=conn.prepareStatement("UPDATE candidatedetails SET cumulative_score="+score+" WHERE reg_no="+r.getInt("reg_no")+";");
+				    int reg = r.getInt("reg_no");
+				    String key = selectCertainData("recruiterrequirements", positionId, "positionrequirements");
+				    String skills =  r.getString("skills");
+				    skills = skills.substring(1, skills.length()-1);
+				    int cp = Integer.parseInt(selectCertainData("recruiterrequirements", positionId, "competitive"));
+				    int git = Integer.parseInt(selectCertainData("recruiterrequirements", positionId, "gitActivity"));
+				    
+				    score=scoreCalculator.ultimateAlgorithm(reg,key ,skills,cp ,git );
+				    connect();
+				    
+				    pst2=conn.prepareStatement("UPDATE candidatedetails SET cumulative_score="+score+" WHERE reg_no="+r.getInt("reg_no")+";");
 			   		pst2.executeUpdate();
-
+			   		
 					System.out.println("databaseConnection at line "+lineNum()+": score details inserted into database");
 					pst2.close();
 			   }
-			   		
-			   		
-			   		
-			  
-		   } catch (SQLException e) {
+			} catch (SQLException e) {
 			   System.out.println("databaseConnection at line "+lineNum()+":"+e.getMessage());
-		   }   disconnect();
+		   }   
+		   disconnect();
 		   
 	   }
 	   
@@ -208,7 +211,8 @@ public class databaseConnection {
 			  while(r.next()) {
 				reg_nos+=r.getString("reg_no")+",";
 			  }
-			  
+
+			  disconnect();
 			  return reg_nos;
 		   }
 			  catch (SQLException e) {

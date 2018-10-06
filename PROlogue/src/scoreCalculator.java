@@ -73,12 +73,10 @@ public class scoreCalculator {
 		float cf_score = 0;
 		int git_repo = Integer.parseInt(databaseConnection.selectCertainData("github", reg_no, "repositories"));
 		int git_stars = Integer.parseInt(databaseConnection.selectCertainData("github", reg_no, "stars"));
-		int git_flr = Integer.parseInt(databaseConnection.selectCertainData("github", reg_no, "followers"));
-		int git_flg = Integer.parseInt(databaseConnection.selectCertainData("github", reg_no, "following_"));
 		float git_score = 0;
-		git_score = (float)(git_repo/5) + (float)(git_stars/8) + (float)(git_flr/15) + (float)(git_flg/25);
+		git_score = (float)(git_repo/5) + (float)(git_stars/8) ;
 		git_score /= 10;
-		cf_score = (float)(cf_rating/38) -12;
+		cf_score = (float)(cf_rating/38);
 		cf_score /= 5;
 		hr_score = (hr_stars*2)+(float)(hr_gold/3)+(float)(hr_silver/5)+(float)(hr_bronze/10);
 		hr_score /= 1.5;
@@ -98,6 +96,7 @@ public class scoreCalculator {
 		finalScore=skillScoreCalculator(keyValuePairs,candidateSkills)/scoreOfRequiredSkills(keyValuePairs);
 		finalScore/=parameterCount*2;
 		finalScore = cp_score + dev_score + finalScore*100 - 10;
+		
 		return finalScore;
 		
 		
